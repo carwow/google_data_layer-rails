@@ -14,7 +14,7 @@ module GoogleDataLayerHelper
     end
   end
 
-  def google_data_layer_code
+  def google_data_layer_embed_code
     %Q{
       <script>
         var googleDataLayer = [{

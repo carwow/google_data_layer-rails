@@ -8,6 +8,12 @@ module GoogleDataLayerHelper
     @data_layer_page_type = page_type
   end
 
+  def google_data_layer_push_virtual_page_code
+    if flash[:data_layer_virtual_page_view_event]
+      "Carwow.DataLayerPushVirtualPageViewEvent('#{flash[:data_layer_virtual_page_view_event]}');"
+    end
+  end
+
   def google_data_layer_code
     %Q{
       <script>

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["developers@carwow.co.uk"]
   spec.description   = %q{Rails helpers to add google data layer javascript to your pages}
   spec.summary       = %q{Rails helpers to add google data layer javascript to your pages}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/carwow/google_data_layer-rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

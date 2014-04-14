@@ -11,17 +11,15 @@ module GoogleDataLayerHelper
   def google_data_layer_code
     %Q{
       <script>
-        var Carwow = Carwow || {};
-
-        Carwow.DataLayer = [{
+        var googleDataLayer = [{
           'ga_id': 'UA-XXXXXX-X',
           'page_pageName': '#{@data_layer_page_name.to_s}',
           'page_pageType': '#{@data_layer_page_type.to_s}'
         }];
 
-        Carwow.DataLayerPushVirtualPageViewEvent = function (virtualPageName) {
-          Carwow.DataLayer.push({
-            'page_virtualName': virtualPageName,
+        googleDataLayerPushVirtualPageViewEvent = function (pageName) {
+          googleDataLayer.push({
+            'page_virtualName': pageName,
             'event': 'gtm.view'
           });
         }
@@ -36,9 +34,9 @@ module GoogleDataLayerHelper
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='Carwow.DataLayer'?'&l='+l:'';j.async=true;j.src=
+      j=d.createElement(s),dl=l!='googleDataLayer'?'&l='+l:'';j.async=true;j.src=
       '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','Carwow.DataLayer','GTM-57THDK');</script>
+      })(window,document,'script','googleDataLayer','GTM-57THDK');</script>
       <!-- End Google Tag Manager -->
     }.html_safe
   end

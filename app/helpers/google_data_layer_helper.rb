@@ -17,7 +17,7 @@ module GoogleDataLayerHelper
           'page_pageType': '#{@data_layer_page_type.to_s}'
         }];
 
-        googleDataLayerPushVirtualPageViewEvent = function (pageName) {
+        var googleDataLayerPushVirtualPageViewEvent = function (pageName) {
           googleDataLayer.push({
             'page_virtualName': pageName,
             'event': 'gtm.view'

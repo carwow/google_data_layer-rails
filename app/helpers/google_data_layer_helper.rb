@@ -4,13 +4,14 @@ module GoogleDataLayerHelper
   end
 
   def google_data_layer_information(page_name, page_type)
-    @data_layer_page_name = page_name
-    @data_layer_page_type = page_type
+    @google_data_layer_page_name = page_name
+    @google_data_layer_page_type = page_type
   end
 
   def google_data_layer_push_virtual_page_code
-    if flash[:data_layer_virtual_page_view_event]
-      "Carwow.DataLayerPushVirtualPageViewEvent('#{flash[:data_layer_virtual_page_view_event]}');"
+    virtual_page = flash[:data_layer_virtual_page_view_event]
+    if virtual_page
+      "googleDataLayerPushVirtualPageViewEvent('#{virtual_page}');"
     end
   end
 
@@ -18,9 +19,9 @@ module GoogleDataLayerHelper
     %Q{
       <script>
         var googleDataLayer = [{
-          'ga_id': 'UA-XXXXXX-X',
-          'page_pageName': '#{@data_layer_page_name.to_s}',
-          'page_pageType': '#{@data_layer_page_type.to_s}'
+          'ga_id': '#{GoogleDataLayer::Rails::Config.google_id}',
+          'page_pageName': '#{@google_data_layer_page_name.to_s}',
+          'page_pageType': '#{@google_data_layer_page_type.to_s}'
         }];
 
         var googleDataLayerPushVirtualPageViewEvent = function (pageName) {

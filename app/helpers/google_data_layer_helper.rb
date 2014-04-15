@@ -1,8 +1,4 @@
 module GoogleDataLayerHelper
-  def google_data_layer_helper_hook
-    'my_js_here'
-  end
-
   def google_data_layer_information(page_name, page_type)
     @google_data_layer_page_name = page_name
     @google_data_layer_page_type = page_type
@@ -17,6 +13,7 @@ module GoogleDataLayerHelper
 
   def google_data_layer_embed_code
     %Q{
+      <!-- Google Data Layer -->
       <script>
         var googleDataLayer = [{
           'ga_id': '#{GoogleDataLayer::Rails::Config.google_id}',
@@ -31,11 +28,8 @@ module GoogleDataLayerHelper
           });
         }
       </script>
-    }.html_safe
-  end
+      <!-- end Google Data Layer -->
 
-  def google_tag_manager_embed_code
-    %q{
       <!-- Google Tag Manager -->
       <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-57THDK"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

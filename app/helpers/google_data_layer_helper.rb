@@ -7,7 +7,7 @@ module GoogleDataLayerHelper
   def google_data_layer_push_virtual_page_code
     virtual_page = flash[:data_layer_virtual_page_view_event]
     if virtual_page
-      "googleDataLayerPushVirtualPageViewEvent('#{virtual_page}');"
+      "dataLayerPushVirtualPageViewEvent('#{virtual_page}');"
     end
   end
 
@@ -15,14 +15,14 @@ module GoogleDataLayerHelper
     %Q{
       <!-- Google Data Layer -->
       <script>
-        var googleDataLayer = [{
+        var dataLayer = [{
           'ga_id': '#{GoogleDataLayer::Rails::Config.google_id}',
           'page_pageName': '#{@google_data_layer_page_name.to_s}',
           'page_pageType': '#{@google_data_layer_page_type.to_s}'
         }];
 
-        var googleDataLayerPushVirtualPageViewEvent = function (pageName) {
-          googleDataLayer.push({
+        var dataLayerPushVirtualPageViewEvent = function (pageName) {
+          dataLayer.push({
             'page_virtualName': pageName,
             'event': 'gtm.view'
           });
@@ -35,9 +35,9 @@ module GoogleDataLayerHelper
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='googleDataLayer'?'&l='+l:'';j.async=true;j.src=
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','googleDataLayer','GTM-57THDK');</script>
+      })(window,document,'script','dataLayer','GTM-57THDK');</script>
       <!-- End Google Tag Manager -->
     }.html_safe
   end

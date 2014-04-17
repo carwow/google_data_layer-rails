@@ -20,6 +20,10 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## TODOs
+- Make the gem more object-oriented
+- Improve implementation to avoid possible collisions with javascript variables and flash symbol names.
+
 ## Contributing
 
 1. Fork it

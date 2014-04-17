@@ -7,14 +7,14 @@ module GoogleDataLayerHelper
   def google_data_layer_push_virtual_page_code
     virtual_page = flash[:data_layer_virtual_page_view_event]
     if virtual_page
-      "dataLayerPushVirtualPageViewEvent('#{virtual_page}');"
+      "<script type=\"text/javascript\">dataLayerPushVirtualPageViewEvent('#{virtual_page}');</script>".html_safe
     end
   end
 
   def google_data_layer_embed_code
     %Q{
       <!-- Google Data Layer -->
-      <script>
+      <script type="text/javascript">
         var dataLayer = [{
           'ga_id': '#{GoogleDataLayer::Rails::Config.google_id}',
           'page_pageName': '#{@google_data_layer_page_name.to_s}',
@@ -26,7 +26,7 @@ module GoogleDataLayerHelper
             'page_virtualName': pageName,
             'event': 'gtm.view'
           });
-        }
+        };
       </script>
       <!-- end Google Data Layer -->
 

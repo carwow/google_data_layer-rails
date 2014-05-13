@@ -11,16 +11,17 @@ module GoogleDataLayerHelper
     end
   end
 
-  def google_data_layer_embed_code(additional_properties = "")
+  def google_data_layer_embed_code(additional_parameters)
+    dataLayer = [
+      {
+        ga_id: GoogleDataLayerHelper::Rails::Config.google_id,
+        page_pageName: @google_data_layer_embed_code.to_s
+      }.merge(additional_parameters)
+    ]
     %Q{
       <!-- Google Data Layer -->
       <script type="text/javascript">
-        var dataLayer = [{
-          'ga_id': '#{GoogleDataLayer::Rails::Config.google_id}',
-          'page_pageName': '#{@google_data_layer_page_name.to_s}',
-          'page_pageType': '#{@google_data_layer_page_type.to_s}',
-          #{additional_properties}
-        }];
+        var dataLayer = #{dataLayer.to_json};
 
         var dataLayerPushVirtualPageViewEvent = function (pageName) {
           dataLayer.push({

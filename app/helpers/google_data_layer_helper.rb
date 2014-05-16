@@ -23,6 +23,12 @@ module GoogleDataLayerHelper
       <script type="text/javascript">
         var dataLayer = #{dataLayer.to_json};
 
+        var dataLayerEvent = function(eventName, params) {
+          params['interactionType'] = eventName;
+          params['event'] = 'key interaction';
+          dataLayer.push(params);
+        };
+
         var dataLayerPushVirtualPageViewEvent = function (pageName) {
           dataLayer.push({
             'page_virtualName': pageName,
